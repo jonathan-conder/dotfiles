@@ -1,8 +1,10 @@
 import XMonad
-import XMonad.Hooks.ManageHelpers
+import XMonad.Actions.UpdateFocus
+import XMonad.Hooks.EwmhDesktops
 
 main = xmonad defaultConfig
-    { borderWidth        = 0
-    , terminal           = "lxterminal"
-    , manageHook         = composeOne [isFullscreen -?> doFullFloat]
+    { borderWidth     = 0
+    , terminal        = "lxterminal"
+    , startupHook     = adjustEventInput
+    , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook <+> focusOnMouseMove
     }
