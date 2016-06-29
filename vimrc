@@ -16,6 +16,11 @@ if has("autocmd")
 			if !v:shell_error
 				call feedkeys("\<CR>")
 			endif
+		elseif &ft == 'bib'
+			!bibtex '%:r'
+			if !v:shell_error
+				call feedkeys("\<CR>")
+			endif
 		elseif &ft == 'python'
 			!./'%'
 			if !v:shell_error
