@@ -38,6 +38,7 @@ endif
 
 set autochdir
 set autowrite
+set backspace=indent,eol,start
 set nobackup
 set noswapfile
 set nowritebackup
