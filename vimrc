@@ -45,3 +45,8 @@ set nowritebackup
 set showcmd
 set tabstop=8
 set whichwrap+=<,>,[,]
+
+let g:ycm_server_python_interpreter = '/usr/bin/python2'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_filetype_whitelist = { 'cpp': 1 }
+set completeopt-=preview
