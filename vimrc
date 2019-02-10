@@ -1,3 +1,4 @@
+let g:tex_flavor = 'latex'
 let &guioptions = substitute(&guioptions, "t", "", "g")
 if &t_Co > 2 || has("gui_running")
 "	let loaded_matchparen = 1
@@ -44,6 +45,7 @@ set noswapfile
 set nowritebackup
 set showcmd
 set tabstop=8
+set visualbell
 set whichwrap+=<,>,[,]
 
 let g:ycm_server_python_interpreter = '/usr/bin/python2'
