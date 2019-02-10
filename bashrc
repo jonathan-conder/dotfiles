@@ -14,9 +14,3 @@ export GREP_COLORS='mt=1;34:fn=1;37:ln=32:bn=32:se=1;33'
 export HISTIGNORE='&:[ ]*:exit'
 export HISTSIZE=2000
 export LESS=R
-
-battery() {
-	local full="$(< /sys/class/power_supply/BAT?/charge_full)"
-	local now="$(< /sys/class/power_supply/BAT?/charge_now)"
-	echo "$((now*100/full))%"
-}
