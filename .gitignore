@@ -1,0 +1,8 @@
+# git ls-files --others --exclude-from=.git/info/exclude
+# Lines that start with '#' are comments.
+chromium
+mimeapps.list
+pulse/cookie
+pulse/*-sink
+pulse/*-source
+pulse/*.tdb
