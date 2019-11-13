@@ -1,0 +1,8 @@
+# sourced by bash-completion, put XDG-specific config here
+# remember to move ~/.bash_history when active
+
+[[ $- != *i* ]] && return
+
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/bash/history"
+
+. "${XDG_CONFIG_HOME:-$HOME/.config}/bash/bashrc"

@@ -1,12 +1,36 @@
-call plug#begin('~/.vim/plugged')
-	Plug 'kaicataldo/material.vim'
-	Plug 'itchyny/lightline.vim'
-	Plug 'tpope/vim-fugitive'
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-	Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-	Plug 'fannheyward/coc-texlab', {'do': 'yarn install --frozen-lockfile'}
-call plug#end()
+" create {config,data,backup,undo}dir and directory first
+" then clone Vundle to datadir/bundle/Vundle.vim
+
+let s:xdgcache = get(environ(), 'XDG_CACHE_HOME', $HOME . '/.cache')
+let s:xdgconfig = get(environ(), 'XDG_CONFIG_HOME', $HOME . '/.config')
+let s:xdgdata = get(environ(), 'XDG_DATA_HOME', $HOME . '/.local/share')
+
+let s:cachedir = s:xdgcache . '/vim'
+let s:configdir = s:xdgconfig . '/vim'
+let s:datadir = s:xdgdata . '/vim'
+
+let &g:backupdir = s:cachedir . '/backup//'
+let &g:directory = s:cachedir . '/swap//'
+let &g:undodir = s:cachedir . '/undo//'
+let &g:viminfo .= ',%,n' . s:datadir . '/viminfo'
+
+set runtimepath-=~/.vim
+set runtimepath-=~/.vim/after
+let &g:runtimepath = join([s:configdir, &g:runtimepath, s:configdir . '/after'], ',')
+
+
+let s:bundledir = s:datadir . '/bundle'
+if isdirectory(s:bundledir)
+	execute 'set runtimepath+=' . s:bundledir . '/Vundle.vim'
+	call vundle#begin(s:bundledir)
+		Plugin 'VundleVim/Vundle.vim'
+		Plugin 'kaicataldo/material.vim'
+		Plugin 'itchyny/lightline.vim'
+		Plugin 'tpope/vim-fugitive'
+		Plugin 'neoclide/coc.nvim'
+	call vundle#end()
+endif
+
 
 filetype plugin indent on
 syntax on
