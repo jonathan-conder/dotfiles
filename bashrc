@@ -3,6 +3,7 @@
 alias diff='diff --color=auto'
 alias grep='grep --color=auto'
 alias ls='ls --color=auto'
+alias pacdiff='comm -3 <(pacman -Qeq) <(pacman -Qttq)'
 
 export GREP_COLORS='mt=1;34:fn=1;37:ln=32:bn=32:se=1;33'
 export HISTIGNORE='&:[ ]*:exit'
