@@ -1,8 +1,17 @@
-_xdgconfig="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"
 
-export BASH_COMPLETION_USER_FILE="${_xdgconfig}/bash/xdgbashrc"
-export EDITRC="${_xdgconfig}/editline/editrc"
-export INPUTRC="${_xdgconfig}/readline/inputrc"
-export VIMINIT=":source ${_xdgconfig}/vim/vimrc"
+export TEXMFVAR="${XDG_CACHE_HOME}/texlive"
 
-unset _xdgconfig
+export BASH_COMPLETION_USER_FILE="${XDG_CONFIG_HOME}/bash/xdgbashrc"
+export EDITRC="${XDG_CONFIG_HOME}/editline/editrc"
+export INPUTRC="${XDG_CONFIG_HOME}/readline/inputrc"
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/startup.py"
+export TEXMFCONFIG="${XDG_CONFIG_HOME}/texlive"
+export VIMINIT=":source ${XDG_CONFIG_HOME}/vim/vimrc"
+
+export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
+export PYTHONHISTFILE="${XDG_DATA_HOME}/python/history"
+export TEXMFHOME="${XDG_DATA_HOME}/texlive"
