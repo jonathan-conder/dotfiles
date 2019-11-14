@@ -12,7 +12,7 @@ let s:datadir = s:xdgdata . '/vim'
 let &g:backupdir = s:cachedir . '/backup//'
 let &g:directory = s:cachedir . '/swap//'
 let &g:undodir = s:cachedir . '/undo//'
-let &g:viminfo .= ',%,n' . s:datadir . '/viminfo'
+let &g:viminfo .= ',n' . s:datadir . '/viminfo'
 
 set runtimepath-=~/.vim
 set runtimepath-=~/.vim/after
@@ -47,8 +47,10 @@ set guioptions+=k
 set guioptions-=t
 set guioptions-=T
 set laststatus=2
+set mouse=a
 set nobackup
 set nowritebackup
+set sessionoptions-=options
 set shiftwidth=4
 set shortmess+=c
 set showcmd
@@ -58,6 +60,9 @@ set tabstop=4
 set updatetime=300
 set whichwrap+=<,>,[,]
 
+if has('clipboard')
+	set clipboard+=unnamedplus
+endif
 if has('termguicolors')
 	set termguicolors
 endif
@@ -104,6 +109,39 @@ let g:lightline = {
 \		'currentfunction': 'exists("b:coc_current_function")&&b:coc_current_function!=""'
 \	}
 \}
+
+
+let s:sessionrc = s:datadir . '/Session.vim'
+
+function! s:disablesession()
+	unlet! s:sessionrc
+endfunction
+
+function! s:savesession()
+	if exists('s:sessionrc') && filewritable(s:datadir) == 2
+		if tabpagenr('$') > 1
+			execute 'mksession! ' . s:sessionrc
+		elseif filewritable(s:sessionrc) == 1
+			call delete(s:sessionrc)
+		endif
+	endif
+endfunction
+
+function! s:loadsession()
+	if argc() > 0
+		call s:disablesession()
+	endif
+	if exists('s:sessionrc') && filereadable(s:sessionrc)
+		execute 'source ' . s:sessionrc
+	endif
+endfunction
+
+augroup session
+	autocmd!
+	autocmd StdinReadPre * call <SID>disablesession()
+	autocmd VimEnter * ++nested call <SID>loadsession()
+	autocmd VimLeave * call <SID>savesession()
+augroup end
 
 
 function! CloseTerminalOnSuccess(job, status)
