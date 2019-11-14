@@ -1,5 +1,4 @@
 " create {config,data,backup,undo}dir and directory first
-" then clone Vundle to datadir/bundle/Vundle.vim
 
 let s:xdgcache = get(environ(), 'XDG_CACHE_HOME', $HOME . '/.cache')
 let s:xdgconfig = get(environ(), 'XDG_CONFIG_HOME', $HOME . '/.config')
@@ -19,16 +18,14 @@ set runtimepath-=~/.vim/after
 let &g:runtimepath = join([s:configdir, &g:runtimepath, s:configdir . '/after'], ',')
 
 
-let s:bundledir = s:datadir . '/bundle'
-if isdirectory(s:bundledir)
-	execute 'set runtimepath+=' . s:bundledir . '/Vundle.vim'
-	call vundle#begin(s:bundledir)
-		Plugin 'VundleVim/Vundle.vim'
-		Plugin 'kaicataldo/material.vim'
-		Plugin 'itchyny/lightline.vim'
-		Plugin 'tpope/vim-fugitive'
-		Plugin 'neoclide/coc.nvim'
-	call vundle#end()
+runtime autoload/plug.vim
+if exists('*plug#begin')
+	call plug#begin(s:datadir . '/plug')
+		Plug 'kaicataldo/material.vim'
+		Plug 'itchyny/lightline.vim'
+		Plug 'tpope/vim-fugitive'
+		Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	call plug#end()
 endif
 
 
