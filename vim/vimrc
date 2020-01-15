@@ -18,11 +18,20 @@ set runtimepath-=~/.vim/after
 let &g:runtimepath = join([s:configdir, &g:runtimepath, s:configdir . '/after'], ',')
 
 
+let g:session_directory = s:datadir . '/sessions'
+let g:session_autoload = 'no'
+let g:session_autosave = 'yes'
+let g:session_persist_font = 0
+let g:session_persist_colors = 0
+
+
 runtime autoload/plug.vim
 if exists('*plug#begin')
 	call plug#begin(s:datadir . '/plug')
 		Plug 'kaicataldo/material.vim'
 		Plug 'itchyny/lightline.vim'
+		Plug 'xolox/vim-misc'
+		Plug 'xolox/vim-session'
 		Plug 'tpope/vim-fugitive'
 		Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	call plug#end()
@@ -47,7 +56,6 @@ set laststatus=2
 set mouse=a
 set nobackup
 set nowritebackup
-set sessionoptions-=options
 set shiftwidth=4
 set shortmess+=c
 set showcmd
@@ -65,6 +73,12 @@ if has('termguicolors')
 endif
 
 let g:gtk_nocache = [0x00000000, 0xfc00ffff, 0xf8000001, 0x78000001]
+
+
+cabbrev es OpenSession
+cabbrev ws SaveSession
+cabbrev qs CloseSession
+cabbrev rms DeleteSession
 
 
 let g:material_theme_style = 'darker'
@@ -106,39 +120,6 @@ let g:lightline = {
 \		'currentfunction': 'exists("b:coc_current_function")&&b:coc_current_function!=""'
 \	}
 \}
-
-
-let s:sessionrc = s:datadir . '/Session.vim'
-
-function! s:disablesession()
-	unlet! s:sessionrc
-endfunction
-
-function! s:savesession()
-	if exists('s:sessionrc') && filewritable(s:datadir) == 2
-		if tabpagenr('$') > 1
-			execute 'mksession! ' . s:sessionrc
-		elseif filewritable(s:sessionrc) == 1
-			call delete(s:sessionrc)
-		endif
-	endif
-endfunction
-
-function! s:loadsession()
-	if argc() > 0
-		call s:disablesession()
-	endif
-	if exists('s:sessionrc') && filereadable(s:sessionrc)
-		execute 'source ' . s:sessionrc
-	endif
-endfunction
-
-augroup session
-	autocmd!
-	autocmd StdinReadPre * call <SID>disablesession()
-	autocmd VimEnter * ++nested call <SID>loadsession()
-	autocmd VimLeave * call <SID>savesession()
-augroup end
 
 
 function! CloseTerminalOnSuccess(job, status)
