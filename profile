@@ -10,6 +10,7 @@ export INPUTRC="${XDG_CONFIG_HOME}/readline/inputrc"
 export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/startup.py"
 export TEXMFCONFIG="${XDG_CONFIG_HOME}/texlive"
 export VIMINIT=":source ${XDG_CONFIG_HOME}/vim/vimrc"
+export VIMPAGER_RC="${XDG_CONFIG_HOME}/vim/vimpagerrc"
 
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
 export LESSHISTFILE="${XDG_DATA_HOME}/less/history"
