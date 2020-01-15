@@ -30,6 +30,7 @@ if exists('*plug#begin')
 	call plug#begin(s:datadir . '/plug')
 		Plug 'kaicataldo/material.vim'
 		Plug 'itchyny/lightline.vim'
+		Plug 'sfiera/vim-emacsmodeline'
 		Plug 'xolox/vim-misc'
 		Plug 'xolox/vim-session'
 		Plug 'tpope/vim-fugitive'
