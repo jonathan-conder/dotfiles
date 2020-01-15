@@ -1,0 +1,23 @@
+{
+	"languageserver": {
+		"c": {
+			"command": "clangd",
+			"args": ["--background-index"],
+			"rootPatterns": ["compile_commands.json", ".git/"],
+			"filetypes": ["c", "cpp"]
+		},
+		"python": {
+			"command": "python",
+			"args": [
+				"-m",
+				"pyls"
+			],
+			"filetypes": ["python"]
+		},
+		"tex": {
+			"command": "texlab",
+			"ignoredRootPaths": ["~"],
+			"filetypes": ["tex", "bib", "plaintex", "context"]
+		}
+	}
+}

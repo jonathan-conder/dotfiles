@@ -24,6 +24,8 @@ let g:session_autosave = 'yes'
 let g:session_persist_font = 0
 let g:session_persist_colors = 0
 
+let g:coc_config_home = s:configdir
+
 
 runtime autoload/plug.vim
 if exists('*plug#begin')
