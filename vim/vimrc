@@ -159,6 +159,15 @@ augroup latex
 augroup end
 
 
+inoremap <F7> <Esc>
+vnoremap <F7> <Esc>
+onoremap <F7> <Esc>
+cnoremap <F7> <Esc>
+tnoremap <F7> <C-W>N
+tnoremap <ScrollWheelDown> <Down><Down><Down>
+tnoremap <ScrollWheelUp> <Up><Up><Up>
+
+
 function! s:checkbackspace() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1] =~# '\s'
