@@ -50,7 +50,6 @@ set backspace=indent,eol,start
 set belloff=all
 set hidden
 set hlsearch
-set guioptions+=!
 set guioptions+=d
 set guioptions+=k
 set guioptions-=t
