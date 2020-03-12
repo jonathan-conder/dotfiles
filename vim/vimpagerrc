@@ -1,1 +1,5 @@
 let g:vimpager_scrolloff=0
+
+let s:xdgdata = get(environ(), 'XDG_DATA_HOME', $HOME . '/.local/share')
+let s:datadir = s:xdgdata . '/vim'
+let &g:viminfo .= ',n' . s:datadir . '/viminfo'
