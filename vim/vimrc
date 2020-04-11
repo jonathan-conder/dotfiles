@@ -1,5 +1,3 @@
-" create {config,data,backup,undo}dir and directory first
-
 let s:xdgcache = get(environ(), 'XDG_CACHE_HOME', $HOME . '/.cache')
 let s:xdgconfig = get(environ(), 'XDG_CONFIG_HOME', $HOME . '/.config')
 let s:xdgdata = get(environ(), 'XDG_DATA_HOME', $HOME . '/.local/share')
@@ -48,6 +46,7 @@ set autochdir
 set autowrite
 set backspace=indent,eol,start
 set belloff=all
+set diffopt+=hiddenoff,vertical
 set hidden
 set hlsearch
 set guioptions+=d
