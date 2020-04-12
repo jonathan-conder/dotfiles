@@ -15,6 +15,10 @@ set runtimepath-=~/.vim
 set runtimepath-=~/.vim/after
 let &g:runtimepath = join([s:configdir, &g:runtimepath, s:configdir . '/after'], ',')
 
+set packpath-=~/.vim
+set packpath-=~/.vim/after
+let &g:packpath = join([s:datadir, &g:packpath, s:datadir . '/after'], ',')
+
 
 let g:session_directory = s:datadir . '/sessions'
 let g:session_autoload = 'no'
@@ -23,20 +27,6 @@ let g:session_persist_font = 0
 let g:session_persist_colors = 0
 
 let g:coc_config_home = s:configdir
-
-
-runtime autoload/plug.vim
-if exists('*plug#begin')
-	call plug#begin(s:datadir . '/plug')
-		Plug 'kaicataldo/material.vim'
-		Plug 'itchyny/lightline.vim'
-		Plug 'sfiera/vim-emacsmodeline'
-		Plug 'xolox/vim-misc'
-		Plug 'xolox/vim-session'
-		Plug 'tpope/vim-fugitive'
-		Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	call plug#end()
-endif
 
 
 filetype plugin indent on
