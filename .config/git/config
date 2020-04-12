@@ -1,11 +1,11 @@
 [user]
 	name = Jonathan Conder
-	email = jonno.conder@gmail.com
+	email = jono.conder@gmail.com
 [sendemail]
 	smtpserver = smtp.gmail.com
 	smtpserverport = 587
 	smtpencryption = tls
-	smtpuser = jonno.conder@gmail.com
+	smtpuser = jono.conder@gmail.com
 [color]
 	branch = auto
 	diff = auto
