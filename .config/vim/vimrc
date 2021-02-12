@@ -66,12 +66,6 @@ endif
 let g:gtk_nocache = [0x00000000, 0xfc00ffff, 0xf8000001, 0x78000001]
 
 
-cabbrev es OpenSession
-cabbrev ws SaveSession
-cabbrev qs CloseSession
-cabbrev rms DeleteSession
-
-
 let g:material_theme_style = 'darker'
 silent! colorscheme material
 
@@ -159,18 +153,16 @@ tnoremap <ScrollWheelDown> <Down><Down><Down>
 tnoremap <ScrollWheelUp> <Up><Up><Up>
 
 
+cabbrev es OpenSession
+cabbrev ws SaveSession
+cabbrev qs CloseSession
+cabbrev rms DeleteSession
+
+
 function! s:checkbackspace() abort
 	let col = col('.') - 1
 	return !col || getline('.')[col - 1] =~# '\s'
 endfunction
-
-inoremap <silent><expr> <Tab>
-\	pumvisible()? "\<C-n>":
-\	<SID>checkbackspace()? "\<Tab>":
-\	coc#refresh()
-inoremap <expr> <S-Tab> pumvisible()? "\<C-p>": "\<S-Tab>"
-inoremap <silent><expr> <C-Space> coc#refresh()
-inoremap <expr> <CR> pumvisible()? "\<C-y>": "\<C-g>u\<CR>"
 
 function! s:showdocs()
 	if index(['vim', 'help'], &filetype) >= 0
@@ -180,7 +172,26 @@ function! s:showdocs()
 	endif
 endfunction
 
+inoremap <silent><expr> <Tab>
+\	pumvisible()? "\<C-n>":
+\	<SID>checkbackspace()? "\<Tab>":
+\	coc#refresh()
+inoremap <expr> <S-Tab> pumvisible()? "\<C-p>": "\<S-Tab>"
+inoremap <silent><expr> <C-Space> coc#refresh()
+inoremap <expr> <CR> (complete_info()['selected'] != '-1')? "\<C-y>": "\<C-g>u\<CR>"
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gD <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 nnoremap <silent> K :call <SID>showdocs()<CR>
+
+command QuickFix call CocActionAsync('doQuickfix')
+cabbrev qf QuickFix
 
 augroup coc
 	autocmd!

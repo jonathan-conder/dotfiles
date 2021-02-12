@@ -19,5 +19,6 @@
 			"ignoredRootPaths": ["~"],
 			"filetypes": ["tex", "bib", "plaintex", "context"]
 		}
-	}
+	},
+	"coc.preferences.jumpCommand": "tabedit"
 }

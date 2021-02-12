@@ -16,7 +16,7 @@ fi
 
 alias dotgit='git --git-dir=${XDG_DATA_HOME:-$HOME/.local/share}/dotgit --work-tree=$HOME'
 alias pacdiff='comm -3 <(pacman -Qeq | sort) <(pacman -Qttq | sort)'
-alias tvim='gvim --remote-tab-silent'
+alias ed='gvim --remote-tab-silent'
 
 PS1='\[\e[1;34m\]\W\[\e[0;$((32+($?>0)))m\]\$\[\e[0m\] '
 if [[ -n ${PROMPT_COMMAND+x} ]]; then
