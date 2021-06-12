@@ -72,7 +72,7 @@ silent! colorscheme material
 if exists('g:material_colorscheme_map')
 	let s:ansi_colors = ['black', 'red', 'green', 'yellow', 'blue', 'purple', 'cyan', 'white']
 	let s:colors = g:material_colorscheme_map
-	let s:ansi_colors = map(s:ansi_colors, 's:colors[v:val]')
+	let s:ansi_colors = map(s:ansi_colors, 's:colors[v:val].gui')
 	let g:terminal_ansi_colors = s:ansi_colors + s:ansi_colors
 endif
 
