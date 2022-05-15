@@ -10,7 +10,7 @@
 			"command": "python",
 			"args": [
 				"-m",
-				"pyls"
+				"pylsp"
 			],
 			"filetypes": ["python"]
 		},

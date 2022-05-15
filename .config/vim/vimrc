@@ -23,6 +23,9 @@ set packpath-=~/.vim/after
 let &g:packpath = join([s:datadir, &g:packpath, s:datadir . '/after'], ',')
 
 
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+
 let g:session_directory = s:statedir . '/sessions'
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
@@ -42,6 +45,7 @@ set belloff=all
 set diffopt+=hiddenoff,vertical
 set hidden
 set hlsearch
+set guiligatures=!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{\|}~
 set guioptions+=d
 set guioptions+=k
 set guioptions-=t
@@ -66,8 +70,6 @@ if has('termguicolors')
 	set termguicolors
 endif
 
-let g:gtk_nocache = [0x00000000, 0xfc00ffff, 0xf8000001, 0x78000001]
-
 
 let g:material_theme_style = 'darker'
 silent! colorscheme material
@@ -77,6 +79,7 @@ if exists('g:material_colorscheme_map')
 	let s:colors = g:material_colorscheme_map
 	let s:ansi_colors = map(s:ansi_colors, 's:colors[v:val].gui')
 	let g:terminal_ansi_colors = s:ansi_colors + s:ansi_colors
+	exec 'hi Terminal guibg=' . s:colors['bg'].gui . ' guifg=' . s:colors['fg'].gui
 endif
 
 "let g:gnome_terminal_background = toupper(s:colors['bg'])
@@ -150,6 +153,11 @@ augroup js
 	autocmd!
 	autocmd FileType javascript,typescript setlocal expandtab sts=2 sw=2 ts=2
 augroup js
+
+augroup yaml
+	autocmd!
+	autocmd FileType yaml setlocal expandtab sts=2 sw=2 ts=2
+augroup yaml
 
 
 inoremap <F7> <Esc>
