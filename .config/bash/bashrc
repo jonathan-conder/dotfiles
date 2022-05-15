@@ -33,3 +33,6 @@ if [[ -n ${PROMPT_COMMAND+x} ]]; then
 else
 	export EDITOR='vim'
 fi
+
+[[ ! -x "$(command -v aws_completer)" ]] || complete -C "$(command -v aws_completer)" aws
+[[ ! -x "$(command -v kubectl)" ]] || source <(kubectl completion bash)
