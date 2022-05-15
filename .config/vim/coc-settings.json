@@ -19,6 +19,11 @@
 			"filetypes": ["rust"],
 			"rootPatterns": ["Cargo.toml"]
 		},
+		"terraform": {
+			"command": "terraform-ls",
+			"args": ["serve"],
+			"filetypes": ["terraform"]
+		},
 		"tex": {
 			"command": "texlab",
 			"ignoredRootPaths": ["~"],
