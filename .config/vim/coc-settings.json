@@ -30,5 +30,6 @@
 			"filetypes": ["tex", "bib", "plaintex", "context"]
 		}
 	},
+	"coc.preferences.currentFunctionSymbolAutoUpdate": true,
 	"coc.preferences.jumpCommand": "tabedit"
 }

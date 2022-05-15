@@ -43,6 +43,7 @@ set autowrite
 set backspace=indent,eol,start
 set belloff=all
 set diffopt+=hiddenoff,vertical
+set encoding=utf-8
 set hidden
 set hlsearch
 set guiligatures=!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{\|}~
@@ -87,12 +88,16 @@ endif
 "let g:gnome_terminal_palette = map(g:terminal_ansi_colors, 'toupper(v:val)')
 
 
+function! CocCurrentFunction()
+	return get(b:, 'coc_current_function', '')
+endfunction()
+
 let g:lightline = {
 \	'colorscheme': 'material_vim',
 \	'active': {
 \		'left': [
 \			['mode', 'paste'],
-\			['currentfunction', 'readonly', 'filename', 'modified']
+\			['readonly', 'git', 'filename', 'modified', 'function']
 \		],
 \		'right': [
 \			['lineinfo'],
@@ -104,11 +109,9 @@ let g:lightline = {
 \			['lineinfo'],
 \		]
 \	},
-\	'component': {
-\		'currentfunction': '%{get(b:, "coc_current_function", "")}'
-\	},
-\	'component_visible_condition': {
-\		'currentfunction': 'exists("b:coc_current_function")&&b:coc_current_function!=""'
+\	'component_function': {
+\		'function': 'CocCurrentFunction',
+\		'git': 'FugitiveHead'
 \	}
 \}
 
@@ -183,8 +186,10 @@ endfunction
 function! s:showdocs()
 	if index(['vim', 'help'], &filetype) >= 0
 		execute 'help' expand('<cword>')
+	elseif coc#rpc#ready()
+		call CocActionAsync('doHover')
 	else
-		call CocAction('doHover')
+		execute '!' . &keywordprg expand('<cword>')
 	endif
 endfunction
 
@@ -192,9 +197,8 @@ inoremap <silent><expr> <Tab>
 \	pumvisible()? "\<C-n>":
 \	<SID>checkbackspace()? "\<Tab>":
 \	coc#refresh()
-inoremap <expr> <S-Tab> pumvisible()? "\<C-p>": "\<S-Tab>"
-inoremap <silent><expr> <C-Space> coc#refresh()
-inoremap <expr> <CR> (complete_info()['selected'] != '-1')? "\<C-y>": "\<C-g>u\<CR>"
+inoremap <expr> <S-Tab> pumvisible()? "\<C-p>": "\<C-h>"
+inoremap <silent><expr> <CR> pumvisible()? coc#_select_confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
