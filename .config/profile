@@ -6,6 +6,7 @@ export XDG_STATE_HOME="${HOME}/.local/state"
 export TEXMFVAR="${XDG_CACHE_HOME}/texlive"
 
 export BASH_COMPLETION_USER_FILE="${XDG_CONFIG_HOME}/bash/bashrc"
+export DOCKER_CONFIG="${XDG_CONFIG_HOME}/docker"
 export EDITRC="${XDG_CONFIG_HOME}/editline/editrc"
 export INPUTRC="${XDG_CONFIG_HOME}/readline/inputrc"
 export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
@@ -20,3 +21,5 @@ export TEXMFHOME="${XDG_DATA_HOME}/texlive"
 
 export HISTFILE="${XDG_STATE_HOME}/bash/history"
 export PYTHONHISTFILE="${XDG_STATE_HOME}/python/history"
+
+export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
