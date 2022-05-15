@@ -146,6 +146,11 @@ augroup latex
 	autocmd FileType bib inoremap <buffer> <F5> <C-O>:call <SID>runbibtex()<CR>
 augroup end
 
+augroup js
+	autocmd!
+	autocmd FileType javascript,typescript setlocal expandtab sts=2 sw=2 ts=2
+augroup js
+
 
 inoremap <F7> <Esc>
 vnoremap <F7> <Esc>
