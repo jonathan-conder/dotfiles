@@ -17,10 +17,14 @@ export TEXMFCONFIG="${XDG_CONFIG_HOME}/texlive"
 export VIMINIT=":source ${XDG_CONFIG_HOME}/vim/vimrc"
 export VIMPAGER_RC="${XDG_CONFIG_HOME}/vim/vimpagerrc"
 
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
 export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
 export TEXMFHOME="${XDG_DATA_HOME}/texlive"
 
 export HISTFILE="${XDG_STATE_HOME}/bash/history"
 export PYTHONHISTFILE="${XDG_STATE_HOME}/python/history"
 
 export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
+
+export PATH="${CARGO_HOME}/bin:${PATH}"
