@@ -9,9 +9,9 @@ alias grep='grep --color=auto'
 alias ls='ls --color=auto'
 export GREP_COLORS='mt=1;34:fn=1;37:ln=32:bn=32:se=1;33'
 
-if [[ -x "$(which vimpager)" ]] &> /dev/null; then
-	alias less=vimpager
-	export PAGER=vimpager
+if [[ -x "$(command -v bat)" ]]; then
+	alias less=bat
+	export PAGER=bat
 fi
 
 alias dotgit='git --git-dir=${XDG_STATE_HOME:-$HOME/.local/state}/dotgit --work-tree=$HOME'
