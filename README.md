@@ -2,10 +2,11 @@
 
 ```console
 $ datadir="${HOME}/.local/share"
+$ statedir="${HOME}/.local/state"
 $ url='git@github.com:jonathan-conder'
 
-$ git clone --bare "${url}/dotfiles.git" "${datadir}/dotgit"
-$ alias dotgit='git --git-dir="${datadir}/dotgit" --work-tree="$HOME"'
+$ git clone --bare "${url}/dotfiles.git" "${statedir}/dotgit"
+$ alias dotgit='git --git-dir="${statedir}/dotgit" --work-tree="$HOME"'
 $ dotgit checkout # remove existing files if prompted
 
 $ chmod go-rwx "${datadir}/gnupg"

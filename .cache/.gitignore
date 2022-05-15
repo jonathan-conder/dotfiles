@@ -1,3 +1,12 @@
-/*
-!/.gitignore
-!/vim/
+/.nv/
+/asp/
+/clangd/
+/evolution/
+/fontconfig/
+/gnome-calculator/
+/gnome-control-center/
+/google-chrome/
+/pip/
+/pre-commit/
+/spotify/
+/texlive/

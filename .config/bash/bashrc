@@ -14,7 +14,7 @@ if [[ -x "$(which vimpager)" ]] &> /dev/null; then
 	export PAGER=vimpager
 fi
 
-alias dotgit='git --git-dir=${XDG_DATA_HOME:-$HOME/.local/share}/dotgit --work-tree=$HOME'
+alias dotgit='git --git-dir=${XDG_STATE_HOME:-$HOME/.local/state}/dotgit --work-tree=$HOME'
 alias pacdiff='comm -3 <(pacman -Qeq | sort) <(pacman -Qttq | sort)'
 alias ed='gvim --remote-tab-silent'
 

@@ -1,21 +1,27 @@
-import os
-import readline
-import atexit
+def usehistfile():
+    import atexit
+    from os import getenv
+    from pathlib import Path
+    import readline
 
-def __register_custom_history__():
-    history = os.environ.get('PYTHONHISTFILE')
-    if history and os.path.isfile(history):
-        try:
-            readline.read_history_file(history)
-        except OSError:
-            pass
+    history = getenv("PYTHONHISTFILE")
+    if not history:
+        return
 
-        def write_history():
-            try:
-                readline.write_history_file(history)
-            except (FileNotFoundError, PermissionError):
-                pass
+    path = Path(history)
+    if not path.is_file():
+        if not path.parent.is_dir():
+            return
+        path.write_bytes(b"import this\n")
 
-        atexit.register(write_history)
+    try:
+        readline.read_history_file(history)
+    except OSError:
+        pass
+    else:
+        atexit.register(readline.write_history_file, history)
 
-__register_custom_history__()
+
+if __name__ == "__main__":
+    usehistfile()
+    del usehistfile

@@ -1,15 +1,18 @@
 let s:xdgcache = get(environ(), 'XDG_CACHE_HOME', $HOME . '/.cache')
 let s:xdgconfig = get(environ(), 'XDG_CONFIG_HOME', $HOME . '/.config')
 let s:xdgdata = get(environ(), 'XDG_DATA_HOME', $HOME . '/.local/share')
+let s:xdgstate = get(environ(), 'XDG_STATE_HOME', $HOME . '/.local/state')
 
 let s:cachedir = s:xdgcache . '/vim'
 let s:configdir = s:xdgconfig . '/vim'
 let s:datadir = s:xdgdata . '/vim'
+let s:statedir = s:xdgstate . '/vim'
 
-let &g:backupdir = s:cachedir . '/backup//'
-let &g:directory = s:cachedir . '/swap//'
-let &g:undodir = s:cachedir . '/undo//'
-let &g:viminfo .= ',n' . s:datadir . '/viminfo'
+let &g:backupdir = s:statedir . '/backup//'
+let &g:directory = s:statedir . '/swap//'
+let &g:undodir = s:statedir . '/undo//'
+let g:netrw_home = s:statedir
+let &g:viminfo .= ',n' . s:statedir . '/viminfo'
 
 set runtimepath-=~/.vim
 set runtimepath-=~/.vim/after
@@ -20,7 +23,7 @@ set packpath-=~/.vim/after
 let &g:packpath = join([s:datadir, &g:packpath, s:datadir . '/after'], ',')
 
 
-let g:session_directory = s:datadir . '/sessions'
+let g:session_directory = s:statedir . '/sessions'
 let g:session_autoload = 'no'
 let g:session_autosave = 'yes'
 let g:session_persist_font = 0
