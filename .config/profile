@@ -28,4 +28,4 @@ export PYTHONHISTFILE="${XDG_STATE_HOME}/python/history"
 
 export DOCKER_HOST="unix://${XDG_RUNTIME_DIR}/docker.sock"
 
-export PATH="${CARGO_HOME}/bin:${PATH}"
+export PATH="${CARGO_HOME}/bin:${HOME}/.local/bin:${PATH}"
