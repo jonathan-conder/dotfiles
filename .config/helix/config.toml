@@ -1,0 +1,17 @@
+theme = "onedarker"
+
+[editor]
+bufferline = "always"
+gutters = ["diff", "diagnostics"]
+scrolloff = 0
+
+[editor.statusline]
+left = ["mode", "spinner", "version-control", "file-name"]
+right = ["file-type", "position", "file-encoding"]
+
+[editor.cursor-shape]
+insert = "bar"
+select = "underline"
+
+[keys.normal."space"]
+o = "file_picker_in_current_buffer_directory"

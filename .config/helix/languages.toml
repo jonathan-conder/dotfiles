@@ -1,0 +1,3 @@
+[[language]]
+name = "nix"
+formatter = { command = "/nix/store/y0bndg3dqw5s1cyanm2va57x7rp4pny0-alejandra-3.0.0/bin/alejandra" }
